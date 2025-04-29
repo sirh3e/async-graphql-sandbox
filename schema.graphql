@@ -1,0 +1,19 @@
+directive @defer(label: String, if: Boolean! = true) on FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+type Market {
+  id: ID!
+  name: String!
+  version: Int!
+}
+
+type MarketHashName {
+  value: String!
+  markets: [Market!]!
+  version: Int!
+}
+
+type Query {
+  inventory: MarketHashName!
+  ping: String!
+  markets: [Market!]!
+}
