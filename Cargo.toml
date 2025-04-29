@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "src/bin/inventory",
+    "src/bin/market"
+]
+resolver = "3"

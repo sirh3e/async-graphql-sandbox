@@ -1,0 +1,40 @@
+
+
+
+
+type Market {
+	id: ID!
+	name: String!
+	version: Int!
+}
+
+type MarketHashName {
+	value: String!
+	markets: [Market!]!
+	version: Int!
+}
+
+type Query {
+	inventory: MarketHashName!
+	_service: _Service!
+	_entities(representations: [_Any!]!): [_Entity]!
+}
+
+
+"""
+The `_Any` scalar is used to pass representations of entities from external
+services into the root `_entities` field for execution.
+"""
+scalar _Any
+
+union _Entity = Market | MarketHashName
+
+type _Service {
+	sdl: String
+}
+
+directive @include(if: Boolean!) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+directive @skip(if: Boolean!) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+schema {
+	query: Query
+}
